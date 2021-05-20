@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="contact-form" [formGroup]="formContact">
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput type="text" placeholder="Nombre de Usuario" formControlName="name" />
+            <mat-error *ngIf="formContact.get('name')?.errors?.required">
+                El nombre es requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput type="text" placeholder="Correo electrónico" formControlName="email" />
+            <mat-error *ngIf="formContact.get('email')?.errors?.email && !formContact.get('email')?.errors?.required">
+                Ingresa un e-mail valido
+            </mat-error>
+            <mat-error *ngIf="formContact.get('email')?.errors?.required">
+                El e-mail es requerido
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Deja un mensaje</mat-label>
+            <textarea matInput placeholder="Mensaje" formControlName="message"></textarea>
+            <mat-error *ngIf="formContact.get('message')?.errors?.minlength && !formContact.get('message')?.errors?.required">
+                Debes escribir al menos 2 caracteres
+            </mat-error>
+            <mat-error *ngIf="formContact.get('message')?.errors?.required">
+                Un mensaje es requerido
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="contact()" [disabled]="formContact.invalid">Ingresar</button>
+
+    </div>
+</div>        
