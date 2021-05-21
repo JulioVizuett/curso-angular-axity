@@ -1,0 +1,29 @@
+<h1>Postres</h1>
+<button mat-raised-button color="primary" (click)="newItem()">Nuevo</button>
+<table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="clasification">
+        <th mat-header-cell *matHeaderCellDef> Clasificación </th>
+        <td mat-cell *matCellDef="let element"> {{element.clasification}} </td>
+    </ng-container>
+    <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Tipo de postre </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="edit(element)">
+                <mat-icon>build</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>

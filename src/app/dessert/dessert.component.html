@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="dessert-form" [formGroup]="formDessert">
+        <h1>{{title}}</h1>
+        <mat-form-field>
+            <mat-label>Clasificación (frio, caliente)</mat-label>
+            <input matInput type="text" placeholder="Clasificación" formControlName="clasification" />
+            <mat-error *ngIf="formDessert.get('clasification')?.errors?.required">
+                La clasificación es requerida
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Tipo de postre (pastel, helado, bebida)</mat-label>
+            <input matInput type="text" placeholder="Tipo" formControlName="type" />
+            <mat-error *ngIf="formDessert.get('type')?.errors?.required">
+                El tipo es requerido
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Precio</mat-label>
+            <input matInput type="number" placeholder="Precio" formControlName="price" />
+            <mat-error *ngIf="formDessert.get('price')?.errors?.required">
+                El precio es requerido
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="save()" [disabled]="formDessert.invalid || disableButton">Guardar</button>
+    </div>
+</div>
