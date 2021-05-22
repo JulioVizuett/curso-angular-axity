@@ -27,4 +27,8 @@ export class DessertsService {
     return this.http.get<Dessert>('https://super-rest.herokuapp.com/test/desserts/' + id);
   }
 
+  deleteDessert(id: string): Observable<any> {
+    return this.http.delete('https://super-rest.herokuapp.com/test/desserts/' + id);
+  }
+
 }

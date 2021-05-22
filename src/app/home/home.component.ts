@@ -12,7 +12,7 @@ import { DessertsService } from '../services/desserts.service';
 })
 export class HomeComponent implements OnInit {
   dataSource = new MatTableDataSource<Dessert>();
-  columns = ['clasification', 'type', 'price', 'actions'];
+  columns = ['clasification', 'type', 'price', 'actions', 'erase'];
 
   constructor(private dataService: DataService, private dessert: DessertsService, private router: Router) {
     this.loadData();
@@ -39,6 +39,21 @@ export class HomeComponent implements OnInit {
 
   newItem(): void {
     this.router.navigate(['postre'])
+  }
+
+  deleteItem(id: string): void {
+
+    this.dataService.isLoading.next(true);
+
+    this.dessert.deleteDessert(id).subscribe(deleteD =>{
+      this.dataService.message.next("Postre Eliminado");
+      // Volver a cargar la tabla
+      this.loadData();
+      this.dataService.isLoading.next(false)
+    }, () =>{
+      this.dataService.isLoading.next(false)
+      this.dataService.message.next("Lo sentimos no se pudo eliminar el postre");
+    });
   }
 
 }
